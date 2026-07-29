@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lomba Menggambar — Dirgahayu RI ke-81</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --merah:#B5222B;
+    --merah-deep:#7A1420;
+    --merah-tint:#FBEAEA;
+    --cream:#FBF7EE;
+    --putih:#FFFFFF;
+    --ink:#241F1C;
+    --ink-soft:#6B635A;
+    --gold:#C89B3C;
+    --gold-soft:#F0E2BE;
+    --hijau:#2F6B4F;
+    --hijau-tint:#E6F0EA;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(36,31,28,.06);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:1080px;margin:0 auto;padding:0 20px 80px;}
+
+  .hero{
+    position:relative;
+    margin:0 -20px 32px;
+    background:var(--merah);
+    overflow:hidden;
+    line-height:0;
+  }
+  .hero img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:420px;
+    object-fit:cover;
+  }
+
+  .section{background:var(--putih);border:1px solid #E9E3D4;border-radius:16px;padding:26px 24px;margin-bottom:20px;box-shadow:var(--shadow);}
+  .section-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
+  .section-no{font-family:'IBM Plex Mono',monospace;color:var(--merah);font-weight:500;font-size:13px;}
+  .section-title{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin:0;}
+  .section-sub{color:var(--ink-soft);font-size:13px;margin:0 0 20px;}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--ink);}
+  input[type=text],input[type=tel],select{
+    width:100%;padding:11px 13px;border:1px solid #DCD5C4;border-radius:9px;
+    font-family:'Inter',sans-serif;font-size:14px;background:#FEFDFB;color:var(--ink);
+  }
+  input:focus,select:focus{outline:none;border-color:var(--merah);box-shadow:0 0 0 3px var(--merah-tint);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:520px){.row2{grid-template-columns:1fr;}}
+  .err{color:var(--merah-deep);font-size:12px;margin-top:5px;display:none;}
+  .field.invalid input,.field.invalid select{border-color:var(--merah-deep);}
+  .field.invalid .err{display:block;}
+
+  .upload-box{
+    border:1.5px dashed #DCD5C4;border-radius:12px;padding:18px;text-align:center;
+    cursor:pointer;background:#FEFDFB;transition:.15s;position:relative;
+  }
+  .upload-box:hover{border-color:var(--merah);background:var(--merah-tint);}
+  .upload-box input{display:none;}
+  .upload-box .ub-title{font-weight:600;font-size:13px;}
+  .upload-box .ub-hint{font-size:12px;color:var(--ink-soft);margin-top:3px;}
+  .preview{margin-top:12px;display:none;}
+  .preview img{width:100%;max-height:220px;object-fit:contain;border-radius:8px;border:1px solid #E9E3D4;background:#fff;}
+  .preview .fname{font-size:12px;color:var(--hijau);margin-top:6px;font-weight:600;}
+
+  .btn{appearance:none;border:none;border-radius:10px;padding:13px 22px;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:.15s;}
+  .btn-primary{background:var(--merah);color:#fff;width:100%;}
+  .btn-primary:hover{background:var(--merah-deep);}
+  .btn-primary:disabled{background:#D8B9BB;cursor:not-allowed;}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid #DCD5C4;font-size:12px;padding:8px 14px;}
+  .btn-ghost:hover{background:#F2EEE2;}
+
+  .notice{border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start;}
+  .notice.warn{background:var(--merah-tint);color:var(--merah-deep);border:1px solid #EAC7C7;}
+  .notice.info{background:var(--gold-soft);color:#5A4620;border:1px solid #E3D19E;}
+
+
+  .config-warning{background:#3A2323;color:#F5D8D8;border-radius:10px;padding:14px 16px;font-size:13px;margin-bottom:20px;font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+
+  .stat-box{
+    background:var(--putih);border:1px solid #E9E3D4;border-radius:16px;
+    padding:22px 24px;text-align:center;margin-bottom:24px;box-shadow:var(--shadow);
+  }
+  .stat-number{font-family:'Fraunces',serif;font-weight:700;font-size:38px;color:var(--merah);line-height:1;}
+  .stat-label{font-size:12.5px;color:var(--ink-soft);margin-top:6px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(36,31,28,.55);z-index:50;align-items:center;justify-content:center;padding:20px;}
+  .modal-card{background:#fff;border-radius:16px;padding:32px 28px;max-width:360px;width:100%;text-align:center;}
+  .modal-card .icon{width:56px;height:56px;border-radius:50%;background:var(--hijau-tint);color:var(--hijau);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:26px;font-weight:700;font-family:'Fraunces',serif;}
+  .modal-card h3{font-family:'Fraunces',serif;font-size:20px;margin:0 0 8px;}
+  .modal-card p{font-size:14px;color:var(--ink-soft);margin:0 0 6px;}
+  .modal-card .rid{font-family:'IBM Plex Mono',monospace;background:#F2EEE2;padding:8px 12px;border-radius:8px;display:inline-block;margin-top:10px;font-size:12px;}
+  .modal-card .btn{margin-top:20px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <img src="banner.png" alt="Lomba Menggambar Dirgahayu HUT RI ke-81">
+  </div>
+
+  <div class="stat-box">
+    <div class="stat-number" id="statNumber">–</div>
+    <div class="stat-label">Peserta sudah terdaftar</div>
+  </div>
+
+  <div id="configWarning" class="config-warning" style="display:none;">
+    ⚠ SCRIPT_URL belum diisi. Buka file ini, cari <b>const SCRIPT_URL</b> di bagian &lt;script&gt;,
+    lalu isi dengan Web app URL hasil deploy Google Apps Script (lihat Code.gs).
+  </div>
+
+  <div id="formFlow">
+    <div id="dupNotice" class="notice warn" style="display:none;">
+      <span>⚠</span>
+      <span id="dupText">Data dengan NPP dan nama peserta yang sama sudah terdaftar sebelumnya. Setiap anak hanya dapat didaftarkan satu kali untuk mencegah duplikasi data.</span>
+    </div>
+
+    <form id="lombaForm" novalidate>
+
+      <div class="section">
+        <div class="section-head"><span class="section-no">01</span><h2 class="section-title">Data pegawai</h2></div>
+        <p class="section-sub">Data pegawai yang mendaftarkan anaknya sebagai peserta lomba.</p>
+
+        <div class="field">
+          <label for="pegawai_nama">Nama pegawai</label>
+          <input type="text" id="pegawai_nama" placeholder="Nama lengkap sesuai identitas" required>
+          <div class="err">Nama pegawai wajib diisi.</div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="pegawai_npp">NPP</label>
+            <input type="text" id="pegawai_npp" placeholder="Nomor pokok pegawai" required>
+            <div class="err">NPP wajib diisi (minimal 3 karakter).</div>
+          </div>
+          <div class="field">
+            <label for="pegawai_region">Region</label>
+            <select id="pegawai_region" required>
+              <option value="" disabled selected>Pilih region</option>
+            </select>
+            <div class="err">Pilih salah satu region.</div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="pegawai_cou">COU</label>
+            <input type="text" id="pegawai_cou" placeholder="Nama unit / cabang / COU" required>
+            <div class="err">COU wajib diisi.</div>
+          </div>
+          <div class="field">
+            <label for="pegawai_notelp">No. telp/WA aktif</label>
+            <input type="tel" id="pegawai_notelp" placeholder="08xxxxxxxxxx" required>
+            <div class="err">Masukkan nomor yang valid (contoh: 081234567890).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><span class="section-no">02</span><h2 class="section-title">Data peserta</h2></div>
+        <p class="section-sub">Anak pegawai yang mengikuti lomba menggambar.</p>
+
+        <div class="field">
+          <label for="anak_nama">Nama anak / peserta lomba</label>
+          <input type="text" id="anak_nama" placeholder="Nama lengkap peserta" required>
+          <div class="err">Nama peserta wajib diisi.</div>
+        </div>
+
+        <div class="field">
+          <label for="anak_kategori">Kategori</label>
+          <select id="anak_kategori" required>
+            <option value="" disabled selected>Pilih kategori</option>
+            <option value="SD">SD</option>
+            <option value="SMP">SMP</option>
+          </select>
+          <div class="err">Pilih kategori lomba.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><span class="section-no">03</span><h2 class="section-title">Unggah karya</h2></div>
+        <p class="section-sub">Format JPG/PNG, maksimal 8MB per foto — akan otomatis dikompres sebelum dikirim.</p>
+
+        <div class="field">
+          <label>Foto 1 — Hasil karya gambar</label>
+          <label class="upload-box" id="box1">
+            <div class="ub-title">Klik untuk pilih foto karya</div>
+            <div class="ub-hint">JPG atau PNG</div>
+            <input type="file" id="gambar1" accept="image/png,image/jpeg">
+          </label>
+          <div class="preview" id="preview1"><img alt="Pratinjau karya"><div class="fname"></div></div>
+          <div class="err">Unggah foto hasil karya.</div>
+        </div>
+
+        <div class="field">
+          <label>Foto 2 — Anak pegawai bersama karyanya</label>
+          <label class="upload-box" id="box2">
+            <div class="ub-title">Klik untuk pilih foto</div>
+            <div class="ub-hint">JPG atau PNG</div>
+            <input type="file" id="gambar2" accept="image/png,image/jpeg">
+          </label>
+          <div class="preview" id="preview2"><img alt="Pratinjau anak dan karya"><div class="fname"></div></div>
+          <div class="err">Unggah foto anak bersama karyanya.</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submitBtn">Kirim pendaftaran</button>
+    </form>
+  </div>
+
+</div>
+
+<div class="modal-bg" id="successModal">
+  <div class="modal-card">
+    <div class="icon">✓</div>
+    <h3>Terimakasih sudah submit, semoga anda juaranya !</h3>
+    <p>Data peserta dan karya sudah masuk ke spreadsheet.</p>
+    <div class="rid" id="regId"></div>
+    <div>
+      <button class="btn btn-primary" id="newRegBtn" style="margin-top:20px;">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ====== ISI DENGAN WEB APP URL HASIL DEPLOY GOOGLE APPS SCRIPT (lihat Code.gs) ====== */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxU8WDDDKjI8Hxyf_DkBQFVawNpTVN9R-_wB44ijBI8qEalY5Z1PhsPQM3KwGc-Vu-sTw/exec";
+/* ===================================================================================== */
+
+if (!SCRIPT_URL || SCRIPT_URL.indexOf('http') !== 0) {
+  document.getElementById('configWarning').style.display = 'block';
+}
+
+async function loadCount() {
+  if (!SCRIPT_URL || SCRIPT_URL.indexOf('http') !== 0) return;
+  try {
+    const res = await fetch(SCRIPT_URL + '?action=count&t=' + Date.now());
+    const data = await res.json();
+    if (data.status === 'ok' && typeof data.total === 'number') {
+      document.getElementById('statNumber').textContent = data.total;
+    } else {
+      console.error('Format respons count tidak sesuai:', data);
+    }
+  } catch (err) {
+    console.error('Gagal memuat jumlah peserta:', err);
+  }
+}
+loadCount();
+
+const regionSel = document.getElementById('pegawai_region');
+for (let i = 1; i <= 10; i++) {
+  const o = document.createElement('option');
+  o.value = String(i); o.textContent = "Region " + i;
+  regionSel.appendChild(o);
+}
+
+function readAndCompress(file, maxW) {
+  return new Promise((resolve, reject) => {
+    if (!['image/jpeg', 'image/png'].includes(file.type)) { reject('type'); return; }
+    if (file.size > 8 * 1024 * 1024) { reject('size'); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, maxW / img.width);
+        const w = Math.round(img.width * scale), h = Math.round(img.height * scale);
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', 0.72));
+      };
+      img.onerror = () => reject('decode');
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject('read');
+    reader.readAsDataURL(file);
+  });
+}
+
+function wireUpload(boxId, inputId, previewId) {
+  const box = document.getElementById(boxId);
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  const field = box.closest('.field');
+  box.addEventListener('click', e => { if (e.target !== input) input.click(); });
+  input.addEventListener('change', async () => {
+    const file = input.files[0];
+    if (!file) return;
+    field.classList.remove('invalid');
+    try {
+      const dataUrl = await readAndCompress(file, 1000);
+      input.dataset.b64 = dataUrl;
+      preview.style.display = 'block';
+      preview.querySelector('img').src = dataUrl;
+      preview.querySelector('.fname').textContent = file.name;
+      box.querySelector('.ub-title').textContent = 'Ganti foto';
+    } catch (err) {
+      input.value = '';
+      delete input.dataset.b64;
+      alert(err === 'type' ? 'File harus berformat JPG atau PNG.' : err === 'size' ? 'Ukuran file maksimal 8MB.' : 'Foto gagal diproses, coba file lain.');
+    }
+  });
+}
+wireUpload('box1', 'gambar1', 'preview1');
+wireUpload('box2', 'gambar2', 'preview2');
+
+const fields = {
+  pegawai_nama: v => v.trim().length >= 3,
+  pegawai_npp: v => /^[A-Za-z0-9]{3,15}$/.test(v.trim()),
+  pegawai_region: v => v !== '',
+  pegawai_cou: v => v.trim().length >= 2,
+  pegawai_notelp: v => /^(\+62|62|0)8\d{7,12}$/.test(v.trim().replace(/[\s-]/g, '')),
+  anak_nama: v => v.trim().length >= 3,
+  anak_kategori: v => v !== '',
+};
+
+function validateAll() {
+  let ok = true;
+  for (const id in fields) {
+    const el = document.getElementById(id);
+    const field = el.closest('.field');
+    const valid = fields[id](el.value);
+    field.classList.toggle('invalid', !valid);
+    if (!valid) ok = false;
+  }
+  ['gambar1', 'gambar2'].forEach(id => {
+    const el = document.getElementById(id);
+    const field = el.closest('.field');
+    const valid = !!el.dataset.b64;
+    field.classList.toggle('invalid', !valid);
+    if (!valid) ok = false;
+  });
+  return ok;
+}
+
+Object.keys(fields).forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    document.getElementById(id).closest('.field').classList.remove('invalid');
+  });
+});
+
+const form = document.getElementById('lombaForm');
+const submitBtn = document.getElementById('submitBtn');
+const dupNotice = document.getElementById('dupNotice');
+const dupText = document.getElementById('dupText');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  dupNotice.style.display = 'none';
+  if (!validateAll()) {
+    document.querySelector('.field.invalid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  if (!SCRIPT_URL || SCRIPT_URL.indexOf('http') !== 0) {
+    alert('SCRIPT_URL belum diisi. Lihat peringatan di atas form.');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Mengirim ke spreadsheet…';
+
+  const id = 'LMB-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+  const record = {
+    id,
+    pegawaiNama: document.getElementById('pegawai_nama').value.trim(),
+    npp: document.getElementById('pegawai_npp').value.trim(),
+    region: document.getElementById('pegawai_region').value,
+    cou: document.getElementById('pegawai_cou').value.trim(),
+    notelp: document.getElementById('pegawai_notelp').value.trim(),
+    anakNama: document.getElementById('anak_nama').value.trim(),
+    kategori: document.getElementById('anak_kategori').value,
+    gambar1: document.getElementById('gambar1').dataset.b64,
+    gambar2: document.getElementById('gambar2').dataset.b64,
+  };
+
+  try {
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(record)
+    });
+    const result = await res.json();
+
+    if (result.status === 'success') {
+      document.getElementById('regId').textContent = result.id;
+      document.getElementById('successModal').style.display = 'flex';
+      loadCount();
+    } else if (result.status === 'duplicate') {
+      dupText.textContent = result.message || 'Data ini sudah pernah terdaftar.';
+      dupNotice.style.display = 'flex';
+      dupNotice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      alert('Gagal menyimpan: ' + (result.message || 'Terjadi kesalahan.'));
+    }
+  } catch (err) {
+    alert('Tidak dapat terhubung ke spreadsheet. Periksa koneksi internet dan SCRIPT_URL, lalu coba lagi.');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Kirim pendaftaran';
+  }
+});
+
+document.getElementById('newRegBtn').addEventListener('click', () => {
+  form.reset();
+  document.querySelectorAll('.preview').forEach(p => { p.style.display = 'none'; });
+  document.querySelectorAll('.upload-box .ub-title').forEach(t => t.textContent = 'Klik untuk pilih foto');
+  document.getElementById('gambar1').removeAttribute('data-b64');
+  document.getElementById('gambar2').removeAttribute('data-b64');
+  document.querySelectorAll('.field').forEach(f => f.classList.remove('invalid'));
+  document.getElementById('successModal').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
