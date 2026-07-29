@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root{
   --red:#C8102E;
@@ -54,19 +54,6 @@ img{max-width:100%;display:block;}
 }
 .top-ribbon span{color:var(--gold);}
 
-/* ---------- banner 21:9 ---------- */
-.banner-wrap{
-  width:100%;
-  aspect-ratio:21/9;
-  overflow:hidden;
-  position:relative;
-}
-.banner-wrap img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
 /* ---------- jumbotron ---------- */
 .jumbotron{
   max-width:1180px;
@@ -77,135 +64,6 @@ img{max-width:100%;display:block;}
   gap:48px;
   align-items:center;
 }
-.jumbotron .eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:var(--gold);
-  color:var(--navy);
-  font-weight:700;
-  font-size:0.78rem;
-  letter-spacing:0.09em;
-  text-transform:uppercase;
-  padding:7px 16px;
-  border-radius:999px;
-  margin-bottom:20px;
-}
-.jumbotron h1{
-  font-size:clamp(1.9rem, 3.4vw, 2.7rem);
-  line-height:1.18;
-  color:var(--red-dark);
-}
-.jumbotron h1 em{
-  font-style:normal;
-  color:var(--navy);
-}
-.jumbotron .lede{
-  font-size:1.08rem;
-  line-height:1.7;
-  color:#3a3a3d;
-  margin-top:20px;
-  max-width:56ch;
-}
-.category-list{
-  list-style:none;
-  margin:22px 0 0;
-  padding:0;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.category-list li{
-  background:var(--white);
-  border:2px dashed var(--gold-dark);
-  border-radius:14px;
-  padding:8px 16px;
-  font-weight:600;
-  font-size:0.92rem;
-  color:var(--red-dark);
-}
-.jumbotron .closing{
-  margin-top:22px;
-  font-weight:600;
-  color:var(--green);
-  font-size:1.02rem;
-}
-.hero-img{
-  position:relative;
-  display:flex;
-  justify-content:center;
-}
-.hero-img img{
-  width:100%;
-  max-width:420px;
-  filter:drop-shadow(0 20px 30px rgba(0,0,0,0.16));
-}
-
-/* ---------- CTA buttons ---------- */
-.cta-row{
-  display:flex;
-  gap:22px;
-  flex-wrap:wrap;
-  margin-top:34px;
-}
-.cta-card{
-  --accent: var(--red);
-  position:relative;
-  flex:1 1 220px;
-  background:var(--paper);
-  border-radius:20px;
-  padding:26px 24px 24px;
-  text-decoration:none;
-  color:var(--navy);
-  box-shadow:var(--shadow);
-  border:3px solid var(--accent);
-  transition:transform .18s ease, box-shadow .18s ease;
-  overflow:hidden;
-}
-.cta-card:hover{
-  transform:translateY(-6px) rotate(-0.4deg);
-  box-shadow:0 24px 50px rgba(28,28,30,0.2);
-}
-.cta-card::after{
-  content:"";
-  position:absolute;
-  top:-30px; right:-30px;
-  width:100px;height:100px;
-  background:var(--accent);
-  opacity:0.12;
-  border-radius:50%;
-}
-.cta-card .tag{
-  display:inline-block;
-  font-size:0.72rem;
-  letter-spacing:0.09em;
-  text-transform:uppercase;
-  font-weight:700;
-  color:var(--accent);
-  margin-bottom:8px;
-}
-.cta-card h3{
-  font-size:1.5rem;
-  color:var(--accent);
-}
-.cta-card p{
-  margin:8px 0 18px;
-  color:#4a4a4d;
-  font-size:0.94rem;
-  line-height:1.55;
-}
-.cta-card .go{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-weight:700;
-  color:var(--accent);
-  font-size:0.95rem;
-}
-.cta-card .go svg{transition:transform .18s ease;}
-.cta-card:hover .go svg{transform:translateX(5px);}
-.cta-card.smp{--accent:var(--red-dark);}
-.cta-card.sd{--accent:var(--green);}
 
 /* ---------- footer ---------- */
 footer{
@@ -345,15 +203,205 @@ footer{
 }
 .note-box strong{color:var(--red-dark);}
 
+/* ============ UPLOAD SECTION ============ */
+.upload-heading{
+  text-align:center;
+  margin:56px 0 26px;
+}
+.upload-heading .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--gold);
+  color:var(--navy);
+  font-weight:700;
+  font-size:0.75rem;
+  letter-spacing:0.09em;
+  text-transform:uppercase;
+  padding:6px 15px;
+  border-radius:999px;
+  margin-bottom:12px;
+}
+.upload-heading h2{
+  font-size:clamp(1.4rem, 2.6vw, 1.9rem);
+  color:var(--red-dark);
+}
+
+/* centered wrapper for the single elongated card */
+.upload-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+.upload-card{
+  position:relative;
+  width:100%;
+  max-width:880px;
+  background:linear-gradient(160deg, var(--navy) 0%, #2b2b2f 100%);
+  border-radius:26px;
+  padding:40px 48px;
+  overflow:hidden;
+  isolation:isolate;
+  box-shadow:0 20px 45px rgba(28,28,30,0.28);
+  border:1px solid rgba(244,185,66,0.25);
+  transition:transform .25s ease, box-shadow .25s ease;
+
+  display:flex;
+  align-items:center;
+  gap:36px;
+  text-align:left;
+}
+.upload-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 28px 55px rgba(28,28,30,0.36);
+}
+
+/* decorative glow blobs */
+.upload-card::before{
+  content:"";
+  position:absolute;
+  top:-70px; right:-60px;
+  width:220px; height:220px;
+  background:radial-gradient(circle, rgba(244,185,66,0.35) 0%, transparent 70%);
+  z-index:-1;
+}
+.upload-card::after{
+  content:"";
+  position:absolute;
+  bottom:-90px; left:-50px;
+  width:220px; height:220px;
+  background:radial-gradient(circle, rgba(200,16,46,0.35) 0%, transparent 70%);
+  z-index:-1;
+}
+
+/* subtle dot pattern */
+.upload-card .pattern{
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(rgba(255,255,255,0.05) 1.4px, transparent 1.4px);
+  background-size:16px 16px;
+  z-index:-1;
+}
+
+.upload-icon-wrap{
+  flex-shrink:0;
+  width:88px;
+  height:88px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 24px rgba(244,185,66,0.35);
+  animation:floaty 3.2s ease-in-out infinite;
+}
+.upload-icon-wrap svg{
+  width:40px;
+  height:40px;
+  stroke:var(--navy);
+}
+@keyframes floaty{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-7px);}
+}
+
+.upload-card .content{
+  flex:1;
+  min-width:0;
+}
+
+.upload-card .num{
+  display:inline-block;
+  font-family:'Baloo 2', sans-serif;
+  font-weight:700;
+  color:var(--gold);
+  font-size:0.75rem;
+  letter-spacing:0.12em;
+  margin-bottom:8px;
+}
+.upload-card h3{
+  color:var(--white);
+  font-size:1.32rem;
+  margin-bottom:10px;
+}
+.upload-card p{
+  color:rgba(255,253,248,0.72);
+  font-size:0.92rem;
+  line-height:1.65;
+  margin:0 0 24px;
+}
+
+/* animated upload button */
+.upload-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+  color:var(--white);
+  text-decoration:none;
+  font-weight:700;
+  font-size:0.96rem;
+  padding:14px 26px;
+  border-radius:14px;
+  overflow:hidden;
+  isolation:isolate;
+  box-shadow:0 10px 22px rgba(200,16,46,0.4);
+  transition:transform .18s ease, box-shadow .18s ease, background .25s ease;
+}
+.upload-btn:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 16px 30px rgba(200,16,46,0.5);
+  background:linear-gradient(135deg, var(--red-dark) 0%, var(--red) 100%);
+}
+.upload-btn:active{
+  transform:translateY(-1px) scale(0.98);
+}
+/* shimmer sweep */
+.upload-btn::before{
+  content:"";
+  position:absolute;
+  top:0; left:-120%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+  transform:skewX(-20deg);
+  transition:left .6s ease;
+  z-index:1;
+}
+.upload-btn:hover::before{
+  left:130%;
+}
+.upload-btn .icon{
+  position:relative;
+  z-index:2;
+  display:inline-flex;
+  transition:transform .35s ease;
+}
+.upload-btn:hover .icon{
+  animation:pop-up .6s ease infinite;
+}
+.upload-btn span.label{position:relative; z-index:2;}
+@keyframes pop-up{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
+}
+
 /* ---------- responsive ---------- */
 @media (max-width:860px){
   .jumbotron{grid-template-columns:1fr; text-align:left;}
-  .hero-img{order:-1; max-width:280px; margin:0 auto 10px;}
-  .hero-img img{max-width:260px;}
   .samples-grid{grid-template-columns:1fr;}
+  .upload-card{
+    flex-direction:column;
+    text-align:center;
+    padding:36px 26px;
+  }
+  .upload-card p{margin-left:auto; margin-right:auto;}
 }
 @media (prefers-reduced-motion: reduce){
-  .cta-card{transition:none;}
+  .upload-icon-wrap{animation:none;}
+  .upload-btn:hover .icon{animation:none;}
 }
 </style>
   
@@ -400,18 +448,39 @@ footer{
           </a>
         </div>
       </article>
-
     </div>
+    <div class="upload-heading">
+      <span class="eyebrow">Langkah Selanjutnya</span>
+      <h2>Kirim Karyamu ke Panitia</h2>
+    </div>
+
+    <div class="upload-wrap">
+      <article class="upload-card">
+        <div class="pattern"></div>
+        <div class="upload-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="content">
+          <span class="num">UPLOAD KARYA</span>
+          <h3>Upload Karya &amp; Peserta</h3>
+          <p>
+            Formulir Unggah Karya &amp; Peserta wajib diisi dengan lengkap dan benar. Formulir ini mencakup data
+            nama pegawai serta nama anak pegawai selaku peserta. Pada tahap akhir pengisian, Anda diwajibkan
+            mengunggah dua berkas gambar, yaitu: gambar karya peserta dan foto peserta bersama karya yang telah
+            dibuat. Setiap berkas memiliki batas ukuran maksimal, serta harus berupa foto yang jelas dan tidak buram.
+          </p>
+          <a class="upload-btn" href="form.html">
+            <span class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="label">Upload Hasil Karya</span>
+          </a>
+        </div>
+      </article>
+    </div>
+
   </section>
-
-  <div class="note-box">
-    <div class="inner">
-      <strong>Catatan:</strong> Contoh gambar di atas hanya sebagai inspirasi tema.
-      Peserta tetap diharapkan menggambar dengan kreativitas dan gaya masing-masing.
-      Informasi teknis pendaftaran akan disampaikan lebih lanjut oleh panitia.
-    </div>
-  </div>
-
+  
   <div style="text-align:center;">
     <a href="index.html" class="back-link">&larr; Kembali ke Beranda</a>
   </div>
